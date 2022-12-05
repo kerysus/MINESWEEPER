@@ -36,10 +36,19 @@ public class Plocha {
     }
     
     public void vytvorBombu(int x, int y){
-        zoznamPolicok[x][y].vytvorBombu();
+        zoznamPolicok[x-1][y-1].vytvorBombu();
         System.out.println("----------------------------------");
         System.out.println("");
         updatePlocha(this.riadky, this.stlpce);
+    }
+    
+    public void makeGuess(int x, int y){
+        if(zoznamPolicok[x-1][y-1].getJeBomba()){
+            System.out.println("GAME OVER");
+        }
+        else{
+            System.out.println("ne");
+        }
     }
     
 }

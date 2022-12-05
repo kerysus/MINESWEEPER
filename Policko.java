@@ -9,6 +9,7 @@ public class Policko {
     private int x;
     private int y;
     private boolean jeBomba = false;
+    private boolean jeVedlaBomba = false;
     public Policko(int y, int x) {
         this.x = x;
         this.y = y;
@@ -24,6 +25,10 @@ public class Policko {
     
     public boolean getJeBomba(){
         return this.jeBomba;
+    }
+    
+    public boolean makeGuess(int x, int y){
+        return false;
     }
     
     public void vytvorBombu(){
