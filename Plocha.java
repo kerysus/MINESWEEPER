@@ -24,6 +24,10 @@ public class Plocha {
         this.zneskodneneBomby = 0;
     }
     
+    public boolean getGameOver(){
+        return this.gameOver;
+    }
+    
     public void vytvorPlochu(int riadky, int stlpce){
         this.riadky = riadky;
         this.stlpce = stlpce;
