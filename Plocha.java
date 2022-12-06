@@ -41,7 +41,24 @@ public class Plocha {
     }
     
     public void updatePlocha(int riadky, int stlpce){
+        System.out.print("   ");
+        for (int x = 1; x <= stlpce; x++){
+            System.out.print("  " + x + "  ");
+        }
+        System.out.println("");
+        System.out.print("   ");
+        for (int j = 1; j <= stlpce; j++){
+            System.out.print("=====");
+        }
+        System.out.println("");
+        
         for (int i = 0; i < riadky; i++){
+            if ((i+1)<10){
+                System.out.print((i+1) + "| ");
+            }
+            else{
+                System.out.print((i+1) + "|");
+            }
             for (int j = 0; j < riadky; j++){
                 zoznamPolicok[i][j].vykresli();
             }
@@ -54,7 +71,6 @@ public class Plocha {
         //int pocetPolicok = this.riadky*this.stlpce;
         //int pocetBomb = this.pocetBomb/5;
         this.pocetBomb = pocetBomb;
-        System.out.println("--------------------");
         for (int i = 0; i < pocetBomb; i++){
             int randX = this.random.nextInt(1, this.riadky);
             int randY = this.random.nextInt(1, this.stlpce);
