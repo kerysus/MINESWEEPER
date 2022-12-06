@@ -9,9 +9,12 @@ public class Plocha {
     Policko[][] zoznamPolicok;
     private int riadky;
     private int stlpce;
+    private int bombCount;
+    private boolean gameOver;
     public Plocha(int riadky, int stlpce) {
-        zoznamPolicok = new Policko[riadky][stlpce];
-        vytvorPlochu(riadky, stlpce);
+        this.zoznamPolicok = new Policko[riadky][stlpce];
+        this.vytvorPlochu(riadky, stlpce);
+        this.gameOver = false;
     }
     
     public void vytvorPlochu(int riadky, int stlpce){
@@ -42,13 +45,30 @@ public class Plocha {
         updatePlocha(this.riadky, this.stlpce);
     }
     
-    public void makeGuess(int x, int y){
-        if(zoznamPolicok[x-1][y-1].getJeBomba()){
-            System.out.println("GAME OVER");
-        }
-        else{
-            System.out.println("ne");
-        }
+    public void nieJeBomba(int x, int y, int pocetBomb){
+        this.zoznamPolicok[x-1][y-1].nieJeBomba(x, y, pocetBomb);
     }
     
+    public void makeGuess(int x, int y){
+        this.bombCount=0;
+        
+        if (zoznamPolicok[x-1][y-1].getJeBomba()){
+            this.gameOver = true;
+            System.out.println("Prehral si hru, gg wp");
+        }
+        for (int riadok = 0; riadok < 3; riadok++){
+            for (int policko = 0; policko < 3; policko++){
+                if (zoznamPolicok[(x-2)+riadok][(y-2)+policko].getJeBomba()){
+                    System.out.println("ano");
+                    this.bombCount++;
+                }
+                else{
+                    System.out.println("ne");
+                    this.nieJeBomba(x, y, this.bombCount);
+                }
+            }
+        }
+        System.out.println("bomCount: " + this.bombCount);
+        updatePlocha(this.riadky, this.stlpce);
+    }
 }

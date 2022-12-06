@@ -8,11 +8,16 @@
 public class Policko {
     private int x;
     private int y;
-    private boolean jeBomba = false;
-    private boolean jeVedlaBomba = false;
+    private boolean jeBomba;
+    private boolean jeVedlaBomba;
+    private boolean jeOdhalena;
+    private int bombCount;
     public Policko(int y, int x) {
         this.x = x;
         this.y = y;
+        this.jeOdhalena = false;
+        this.jeVedlaBomba = false;
+        this.jeBomba = false;
     }
     
     public int getX(){
@@ -35,12 +40,21 @@ public class Policko {
         this.jeBomba = true;
     }
     
+    public void nieJeBomba(int x, int y, int pocetBomb){
+        this.jeBomba = false;
+        this.jeOdhalena = true;
+        this.bombCount = pocetBomb;
+    }
+    
     public void vykresli(){
-        if (this.getJeBomba() == true) {
-            System.out.print(" * ");
+        if (this.getJeBomba()) {
+            System.out.print(" |*| ");
+        }
+        else if (this.jeOdhalena){
+            System.out.print(" |" + this.bombCount + "| ");
         }
         else {
-            System.out.print(" 0 ");
+            System.out.print(" |0| ");
         }
     }
 }
