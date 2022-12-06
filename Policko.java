@@ -11,6 +11,7 @@ public class Policko {
     private boolean jeBomba;
     private boolean jeVedlaBomba;
     private boolean jeOdhalena;
+    private boolean maVlajku;
     private int bombCount;
     public Policko(int y, int x) {
         this.x = x;
@@ -18,6 +19,7 @@ public class Policko {
         this.jeOdhalena = false;
         this.jeVedlaBomba = false;
         this.jeBomba = false;
+        this.maVlajku = false;
     }
     
     public int getX(){
@@ -36,6 +38,14 @@ public class Policko {
         return false;
     }
     
+    public boolean getMaVlajku(){
+        return this.maVlajku;
+    }
+    
+    public void setMaVlajku(boolean hodnota){
+        this.maVlajku = hodnota;
+    }
+    
     public void vytvorBombu(){
         this.jeBomba = true;
     }
@@ -52,6 +62,9 @@ public class Policko {
         }
         else if (this.jeOdhalena){
             System.out.print(" |" + this.bombCount + "| ");
+        }        
+        else if (this.maVlajku){
+            System.out.print(" |P| ");
         }
         else {
             System.out.print(" |0| ");

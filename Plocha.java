@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 /**
  * Write a description of class Plocha here.
  * 
@@ -10,11 +11,17 @@ public class Plocha {
     private int riadky;
     private int stlpce;
     private int bombCount;
+    private int pocetBomb;
+    private Random random;
     private boolean gameOver;
+    private int zneskodneneBomby;
+    
     public Plocha(int riadky, int stlpce) {
         this.zoznamPolicok = new Policko[riadky][stlpce];
         this.vytvorPlochu(riadky, stlpce);
         this.gameOver = false;
+        this.random = new Random();
+        this.zneskodneneBomby = 0;
     }
     
     public void vytvorPlochu(int riadky, int stlpce){
@@ -36,13 +43,24 @@ public class Plocha {
             }
             System.out.println("");
         }
+        System.out.println("=====================================================");
+    }
+    
+    public void vytvorPoleBomb(int pocetBomb){
+        //int pocetPolicok = this.riadky*this.stlpce;
+        //int pocetBomb = this.pocetBomb/5;
+        this.pocetBomb = pocetBomb;
+        System.out.println("--------------------");
+        for (int i = 0; i < pocetBomb; i++){
+            int randX = this.random.nextInt(1, this.riadky);
+            int randY = this.random.nextInt(1, this.stlpce);
+            this.vytvorBombu(randX, randY);        
+        }
+        this.updatePlocha(this.riadky, this.stlpce);
     }
     
     public void vytvorBombu(int x, int y){
-        zoznamPolicok[x-1][y-1].vytvorBombu();
-        System.out.println("----------------------------------");
-        System.out.println("");
-        updatePlocha(this.riadky, this.stlpce);
+        this.zoznamPolicok[x-1][y-1].vytvorBombu();
     }
     
     public void nieJeBomba(int x, int y, int pocetBomb){
@@ -69,6 +87,17 @@ public class Plocha {
             }
         }
         System.out.println("bomCount: " + this.bombCount);
-        updatePlocha(this.riadky, this.stlpce);
+        this.updatePlocha(this.riadky, this.stlpce);
+    }
+    
+    public void polozVlajku(int x, int y){
+        if (this.zoznamPolicok[x-1][y-1].getJeBomba()){
+            this.zneskodneneBomby++;
+            if (this.zneskodneneBomby==this.pocetBomb){
+                System.out.println("VYHRAL SI!");
+            }
+        }
+        this.zoznamPolicok[x-1][y-1].setMaVlajku(true);
+        this.updatePlocha(this.riadky, this.stlpce);
     }
 }
