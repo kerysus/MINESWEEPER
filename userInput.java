@@ -28,7 +28,7 @@ public class userInput {
     }
     
     public void makeGuesses(){
-        while(!this.plocha.getGameOver()){
+        if(!this.plocha.getVyhra() && !this.plocha.getPrehra()){
             System.out.println("Vyber: odhad(1), poloz vlajku(2): ");
             int vyber = scanner.nextInt();
             
@@ -48,6 +48,7 @@ public class userInput {
                 int suradnicaY = scanner.nextInt();
                 this.plocha.polozVlajku(suradnicaY, suradnicaX);
             }
+            this.makeGuesses();
         }
     }
 }

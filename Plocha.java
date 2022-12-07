@@ -13,19 +13,25 @@ public class Plocha {
     private int bombCount;
     private int pocetBomb;
     private Random random;
-    private boolean gameOver;
+    private boolean vyhra;
+    private boolean prehra;
     private int zneskodneneBomby;
     
     public Plocha(int riadky, int stlpce) {
         this.zoznamPolicok = new Policko[riadky][stlpce];
         this.vytvorPlochu(riadky, stlpce);
-        this.gameOver = false;
+        this.vyhra = false;
+        this.prehra = false;
         this.random = new Random();
         this.zneskodneneBomby = 0;
     }
     
-    public boolean getGameOver(){
-        return this.gameOver;
+    public boolean getVyhra(){
+        return this.vyhra;
+    }
+    
+    public boolean getPrehra(){
+        return this.prehra;
     }
     
     public void vytvorPlochu(int riadky, int stlpce){
@@ -83,31 +89,36 @@ public class Plocha {
         this.zoznamPolicok[x-1][y-1].vytvorBombu();
     }
     
-    public void nieJeBomba(int x, int y, int pocetBomb){
-        this.zoznamPolicok[x-1][y-1].nieJeBomba(x, y, pocetBomb);
+    public void setNieJeBomba(int x, int y, int pocetBomb){
+        this.zoznamPolicok[x-1][y-1].setNieJeBomba(x, y, pocetBomb);
     }
     
     public void makeGuess(int x, int y){
         this.bombCount=0;
-        
         if (zoznamPolicok[x-1][y-1].getJeBomba()){
-            this.gameOver = true;
+            this.prehra = true;
             System.out.println("Prehral si hru, gg wp");
         }
-        for (int riadok = 0; riadok < 3; riadok++){
-            for (int policko = 0; policko < 3; policko++){
-                if (zoznamPolicok[(x-2)+riadok][(y-2)+policko].getJeBomba()){
-                    System.out.println("ano");
-                    this.bombCount++;
-                }
-                else{
-                    System.out.println("ne");
-                    this.nieJeBomba(x, y, this.bombCount);
+        else{
+            for (int riadok = 0; riadok < 3; riadok++){
+                for (int policko = 0; policko < 3; policko++){
+                    int index1 = (x-2)+riadok;
+                    int index2 = (y-2)+policko;
+                    
+                    if (index1 == -1){continue;}
+                    if (index2 == -1){continue;}
+                    
+                    if (zoznamPolicok[index1][index2].getJeBomba()){
+                        this.bombCount++;
+                    }
+                    else{
+                        this.setNieJeBomba(x, y, this.bombCount);
+                    }
                 }
             }
+            System.out.println("bomCount: " + this.bombCount);
+            this.updatePlocha(this.riadky, this.stlpce);
         }
-        System.out.println("bomCount: " + this.bombCount);
-        this.updatePlocha(this.riadky, this.stlpce);
     }
     
     public void polozVlajku(int x, int y){
@@ -115,9 +126,16 @@ public class Plocha {
             this.zneskodneneBomby++;
             if (this.zneskodneneBomby==this.pocetBomb){
                 System.out.println("VYHRAL SI!");
+                this.vyhra = true;
+            }
+            else{
+                this.zoznamPolicok[x-1][y-1].setMaVlajku(true);
+                this.updatePlocha(this.riadky, this.stlpce);
             }
         }
-        this.zoznamPolicok[x-1][y-1].setMaVlajku(true);
-        this.updatePlocha(this.riadky, this.stlpce);
+        else{
+            this.zoznamPolicok[x-1][y-1].setMaVlajku(true);
+            this.updatePlocha(this.riadky, this.stlpce);
+        } 
     }
 }

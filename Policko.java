@@ -50,7 +50,7 @@ public class Policko {
         this.jeBomba = true;
     }
     
-    public void nieJeBomba(int x, int y, int pocetBomb){
+    public void setNieJeBomba(int x, int y, int pocetBomb){
         this.jeBomba = false;
         this.jeOdhalena = true;
         this.bombCount = pocetBomb;
