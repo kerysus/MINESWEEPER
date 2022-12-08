@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Random;
 
 public class Plocha {
@@ -44,23 +43,6 @@ public class Plocha {
     }
     
     //vytvori novy objekt typu Plocha()
-=======
-/**
- * Write a description of class Plocha here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Plocha {
-    Policko[][] zoznamPolicok;
-    private int riadky;
-    private int stlpce;
-    public Plocha(int riadky, int stlpce) {
-        zoznamPolicok = new Policko[riadky][stlpce];
-        vytvorPlochu(riadky, stlpce);
-    }
-    
->>>>>>> 8a3faf07d60e13b591ee5e9f08e1beb5f1b99121
     public void vytvorPlochu(int riadky, int stlpce){
         this.riadky = riadky;
         this.stlpce = stlpce;
@@ -73,7 +55,6 @@ public class Plocha {
         }
     }
     
-<<<<<<< HEAD
     //vykresli hracu plochu hry
     public void updatePlocha(int riadky, int stlpce){
         System.out.print("   ");
@@ -99,30 +80,18 @@ public class Plocha {
             else{
                 System.out.print((i+1) + "|");
             }
-<<<<<<< HEAD
             
             
-=======
-=======
-    public void updatePlocha(int riadky, int stlpce){
-        for (int i = 0; i < riadky; i++){
->>>>>>> 8a3faf07d60e13b591ee5e9f08e1beb5f1b99121
->>>>>>> 33b1d910da037c99ea8f5ee01e334396f33ff083
             for (int j = 0; j < riadky; j++){
                     zoznamPolicok[i][j].vykresli();     
             }
             System.out.println("");
         }
-<<<<<<< HEAD
         
         for (int j = 1; j <= stlpce; j++){
             System.out.print("======");
         }
         System.out.println("");
-=======
-<<<<<<< HEAD
-        System.out.println("=====================================================");
->>>>>>> 33b1d910da037c99ea8f5ee01e334396f33ff083
     }
     
     //vytvori minu na danej suradnici
@@ -210,15 +179,4 @@ public class Plocha {
             this.updatePlocha(this.riadky, this.stlpce);
         } 
     }  
-=======
-    }
-    
-    public void vytvorBombu(int x, int y){
-        zoznamPolicok[x][y].vytvorBombu();
-        System.out.println("----------------------------------");
-        System.out.println("");
-        updatePlocha(this.riadky, this.stlpce);
-    }
-    
->>>>>>> 8a3faf07d60e13b591ee5e9f08e1beb5f1b99121
 }
