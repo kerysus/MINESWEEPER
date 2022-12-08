@@ -59,17 +59,12 @@ public class Plocha {
     public void updatePlocha(int riadky, int stlpce){
         System.out.print("   ");
         for (int x = 1; x <= stlpce; x++){
-            if (x > 9){
-                System.out.print(" " + x + "  ");
-            }
-            else{
-                System.out.print("  " + x + "  ");
-            }
+            System.out.print("  " + x + "  ");
         }
         System.out.println("");
         System.out.print("   ");
         for (int j = 1; j <= stlpce; j++){
-            System.out.print("======");
+            System.out.print("=====");
         }
         System.out.println("");
         
@@ -80,18 +75,12 @@ public class Plocha {
             else{
                 System.out.print((i+1) + "|");
             }
-            
-            
             for (int j = 0; j < riadky; j++){
-                    zoznamPolicok[i][j].vykresli();     
+                zoznamPolicok[i][j].vykresli();
             }
             System.out.println("");
         }
-        
-        for (int j = 1; j <= stlpce; j++){
-            System.out.print("======");
-        }
-        System.out.println("");
+        System.out.println("=====================================================");
     }
     
     //vytvori minu na danej suradnici
@@ -137,25 +126,22 @@ public class Plocha {
                 for (int policko = 0; policko < 3; policko++){
                     int index1 = (x-2)+riadok;
                     int index2 = (y-2)+policko;
-                    if ((index1 == -1 || index2 == -1) || (index1 == this.zoznamPolicok[x-1].length || index2 == this.zoznamPolicok.length)){
-                        continue;
-                    }
-                    else{
+                    if ((index1 > -1) && (index2 > -1)){
                         if (zoznamPolicok[index1][index2].getJeBomba()){
                             pocetMinOkolo++;
                         }
                         else{
                             this.setBombsInArea(x, y, pocetMinOkolo);
                         }
-                    } 
+                    }
                 }
             }
         return pocetMinOkolo;
     }
     
     public void zistiPocetMinOkoloVsetkychPolicok(){
-        for (int riadok = 0; riadok < this.zoznamPolicok.length; riadok++){
-            for (int prvok = 0; prvok < this.zoznamPolicok[riadok].length; prvok++){   
+        for (int riadok = 0; riadok < this.zoznamPolicok.length-1; riadok++){
+            for (int prvok = 0; prvok < this.zoznamPolicok[riadok].length-1; prvok++){   
                 this.zoznamPolicok[riadok][prvok].setBombsInArea(this.zistiPocetMinOkolo(riadok+1, prvok+1));
             }
         }

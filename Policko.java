@@ -98,7 +98,6 @@ public class Policko {
         
         else {
             if (this.bombsInArea==0){
-                //System.out.print("     ");
                 this.obsadene = true;
             }
             
