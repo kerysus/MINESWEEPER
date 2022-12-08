@@ -8,6 +8,7 @@
 public class Policko {
     private int x;
     private int y;
+<<<<<<< HEAD
     private int bombsInArea;
     private boolean jeBomba;
     private boolean jeVedlaBomba;
@@ -23,6 +24,12 @@ public class Policko {
         this.jeBomba = false;
         this.maVlajku = false;
         this.obsadene = false;
+=======
+    private boolean jeBomba = false;
+    public Policko(int y, int x) {
+        this.x = x;
+        this.y = y;
+>>>>>>> 8a3faf07d60e13b591ee5e9f08e1beb5f1b99121
     }
     
     public int getX(){
@@ -33,14 +40,18 @@ public class Policko {
         return this.y;
     }
     
+<<<<<<< HEAD
     public int getBombsInArea(){
         return this.bombsInArea;
     }
     
+=======
+>>>>>>> 8a3faf07d60e13b591ee5e9f08e1beb5f1b99121
     public boolean getJeBomba(){
         return this.jeBomba;
     }
     
+<<<<<<< HEAD
     public boolean getJeObsadene(){
         return this.obsadene;
     }
@@ -73,10 +84,13 @@ public class Policko {
         return false;
     }
     
+=======
+>>>>>>> 8a3faf07d60e13b591ee5e9f08e1beb5f1b99121
     public void vytvorBombu(){
         this.jeBomba = true;
     }
     
+<<<<<<< HEAD
     //vykresli dane policko podla toho aky ma stav
     public void vykresli(){
         if (this.jeOdhalena){
@@ -110,4 +124,14 @@ public class Policko {
             }
             }
         }
+=======
+    public void vykresli(){
+        if (this.getJeBomba() == true) {
+            System.out.print(" * ");
+        }
+        else {
+            System.out.print(" 0 ");
+        }
+    }
+>>>>>>> 8a3faf07d60e13b591ee5e9f08e1beb5f1b99121
 }
