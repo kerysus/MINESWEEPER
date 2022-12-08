@@ -12,12 +12,9 @@ public class userInput {
     }
 
     public void vytvorPlochu(){
-        System.out.println("Pocet riadkov: "); 
+        System.out.println("Zadaj rozmer plochy: "); 
         int riadky = scanner.nextInt(); 
-
-        System.out.println("Pocet stlpcov: "); 
-        int stlpce = scanner.nextInt(); 
-        
+        int stlpce = riadky;
         this.plocha = new Plocha(riadky, stlpce);
     }
     
