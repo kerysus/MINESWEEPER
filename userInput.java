@@ -1,49 +1,74 @@
 import java.util.Scanner;
 
-public class userInput {
+public class UserInput {
     private Plocha plocha;
     private Scanner scanner;
-    
-    public userInput() {
+
+    public UserInput() {
         this.scanner = new Scanner(System.in);
-        this.vytvorPlochu();
-        this.vytvorPoleMin();
+        this.vytvorHru();
         this.makeGuesses();
     }
 
-    public void vytvorPlochu(){
-        System.out.println("Zadaj rozmer plochy: "); 
-        int riadky = scanner.nextInt(); 
-        int stlpce = riadky;
-        this.plocha = new Plocha(riadky, stlpce);
+    public void vytvorHru() {
+        System.out.println("Zadaj obťiažnosť hry: 1)ľahká  2)pokročilá 3) ťažká");
+        int obtiaznost = this.scanner.nextInt();
+        switch (obtiaznost) {
+            case 1:
+                this.vytvorPlochu(5);
+                this.vytvorPoleMin(1);
+                break;
+            case 2:
+                this.vytvorPlochu(8);
+                this.vytvorPoleMin(5);
+                break;
+            case 3:
+                this.vytvorPlochu(10);
+                this.vytvorPoleMin(20);
+                break;
+            default:
+                System.out.println("Chybný input, skús ešte raz");
+                this.vytvorHru();
+        }
     }
-    
-    public void vytvorPoleMin(){
-        System.out.println("Zadaj pocet min: ");
-        int pocetMin = scanner.nextInt();
+
+    public void vytvorPlochu(int riadky) {
+        this.plocha = new Plocha(riadky, riadky);
+    }
+
+    public void vytvorPoleMin(int pocetMin) {
         this.plocha.vytvorPoleBomb(pocetMin);
     }
-    
-    public void makeGuesses(){
-        if(!this.plocha.getVyhra() && !this.plocha.getPrehra()){
-            System.out.println("Vyber: odhad(1), poloz vlajku(2): ");
-            int vyber = scanner.nextInt();
-            
-            if (vyber==1){
-                System.out.println("Zadaj X: ");
-                int suradnicaX = scanner.nextInt();
-                
-                System.out.println("Zadaj Y: ");
-                int suradnicaY = scanner.nextInt();
-                this.plocha.makeGuess(suradnicaY, suradnicaX);
-            }
-            else{
-                System.out.println("Zadaj X: ");
-                int suradnicaX = scanner.nextInt();
-                
-                System.out.println("Zadaj Y: ");
-                int suradnicaY = scanner.nextInt();
-                this.plocha.polozVlajku(suradnicaY, suradnicaX);
+
+    public void makeGuesses() {
+        if (!this.plocha.getVyhra() && !this.plocha.getPrehra()) {
+            System.out.println("Vyber: odhad(1), polož vlajku(2), zdvihni vlajku(3): ");
+            int vyber = this.scanner.nextInt();
+
+            switch (vyber) {
+                case 1:
+                    System.out.println("Zadaj X: ");
+                    int suradnicaX = this.scanner.nextInt();
+                    System.out.println("Zadaj Y: ");
+                    int suradnicaY = this.scanner.nextInt();
+                    this.plocha.makeGuess(suradnicaY, suradnicaX);
+                    break;
+                case 2:
+                    System.out.println("Zadaj X: ");
+                    suradnicaX = this.scanner.nextInt();
+                    System.out.println("Zadaj Y: ");
+                    suradnicaY = this.scanner.nextInt();
+                    this.plocha.polozVlajku(suradnicaY, suradnicaX);
+                    break;
+                case 3:
+                    System.out.println("Zadaj X: ");
+                    suradnicaX = this.scanner.nextInt();
+                    System.out.println("Zadaj Y: ");
+                    suradnicaY = this.scanner.nextInt();
+                    this.plocha.zdvihniVlajku(suradnicaX, suradnicaY);
+                    break;
+                default:
+                    System.out.println("Chybný input, skús ešte raz");
             }
             this.makeGuesses();
         }
