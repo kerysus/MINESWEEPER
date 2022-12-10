@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
-public class userInput {
+public class UserInput {
     private Plocha plocha;
     private Scanner scanner;
-    
-    public userInput() {
+
+    public UserInput() {
         this.scanner = new Scanner(System.in);
         this.vytvorHru();
         this.makeGuesses();
     }
-    
-    public void vytvorHru(){
+
+    public void vytvorHru() {
         System.out.println("Zadaj obťiažnosť hry: 1)ľahká  2)pokročilá 3) ťažká");
-        int obtiaznost = scanner.nextInt();
-        switch(obtiaznost){
+        int obtiaznost = this.scanner.nextInt();
+        switch (obtiaznost) {
             case 1:
                 this.vytvorPlochu(5);
                 this.vytvorPoleMin(1);
@@ -32,39 +32,39 @@ public class userInput {
         }
     }
 
-    public void vytvorPlochu(int riadky){
+    public void vytvorPlochu(int riadky) {
         this.plocha = new Plocha(riadky, riadky);
     }
-    
-    public void vytvorPoleMin(int pocetMin){
+
+    public void vytvorPoleMin(int pocetMin) {
         this.plocha.vytvorPoleBomb(pocetMin);
     }
-    
-    public void makeGuesses(){
-        if(!this.plocha.getVyhra() && !this.plocha.getPrehra()){
+
+    public void makeGuesses() {
+        if (!this.plocha.getVyhra() && !this.plocha.getPrehra()) {
             System.out.println("Vyber: odhad(1), polož vlajku(2), zdvihni vlajku(3): ");
-            int vyber = scanner.nextInt();
-            
-            switch(vyber){
+            int vyber = this.scanner.nextInt();
+
+            switch (vyber) {
                 case 1:
                     System.out.println("Zadaj X: ");
-                    int suradnicaX = scanner.nextInt();
+                    int suradnicaX = this.scanner.nextInt();
                     System.out.println("Zadaj Y: ");
-                    int suradnicaY = scanner.nextInt();
+                    int suradnicaY = this.scanner.nextInt();
                     this.plocha.makeGuess(suradnicaY, suradnicaX);
                     break;
                 case 2:
                     System.out.println("Zadaj X: ");
-                    suradnicaX = scanner.nextInt();
+                    suradnicaX = this.scanner.nextInt();
                     System.out.println("Zadaj Y: ");
-                    suradnicaY = scanner.nextInt();
+                    suradnicaY = this.scanner.nextInt();
                     this.plocha.polozVlajku(suradnicaY, suradnicaX);
                     break;
                 case 3:
                     System.out.println("Zadaj X: ");
-                    suradnicaX = scanner.nextInt();
+                    suradnicaX = this.scanner.nextInt();
                     System.out.println("Zadaj Y: ");
-                    suradnicaY = scanner.nextInt(); 
+                    suradnicaY = this.scanner.nextInt();
                     this.plocha.zdvihniVlajku(suradnicaX, suradnicaY);
                     break;
                 default:
