@@ -30,16 +30,19 @@ public class VykresliPrazdnePolicka
                     continue;
                 }
                 else{
-                    if (!this.zoznamPolicok[index2][index1].getJeBomba()){  
-                        this.logic = true;
-                        this.zoznamPolicok[index2][index1].setKontrola(true);
-                        this.zoznamPolicok[index2][index1].setJeOdhalena(true);
-                        this.polickaList.add(this.zoznamPolicok[index2][index1]);
-                    } 
+                        if (this.zoznamPolicok[index2][index1].getJeBomba()){
+                            this.zoznamPolicok[index1][index2].setKontrola(true);
+                            this.zoznamPolicok[index1][index2].setJeOdhalena(true);
+                        }
+                        else{
+                            this.zoznamPolicok[index1][index2].setKontrola(true);
+                            this.zoznamPolicok[index1][index2].setJeOdhalena(true);
+                        }
+                    }
                 }
             }
         }
-    }
+    
     
     public Policko[][] getZoznamPraznychPoli(){
         return this.zoznamPolicok;

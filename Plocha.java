@@ -116,12 +116,11 @@ public class Plocha {
         //skontroluje ci sme trafili minu
         if (zoznamPolicok[x-1][y-1].getJeBomba()){
             this.prehra = true;
-            System.out.println("Prehral si hru, gg wp");
+            System.out.println("TRAFIL SI MÍNU, HRU SI PREHRAL!");
         }
         //ak sme minu netrafili, vypise cislo s poctom min na danej suradnici
         else{
             this.zoznamPolicok[x-1][y-1].setJeOdhalena(true);
-            System.out.println("bombCount: " + this.zoznamPolicok[x-1][y-1].getBombsInArea());
             this.updatePlocha(this.riadky, this.stlpce);
             
             if (this.zoznamPolicok[x-1][y-1].getBombsInArea()==0){
