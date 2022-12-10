@@ -195,5 +195,10 @@ public class Plocha {
             this.zoznamPolicok[x-1][y-1].setMaVlajku(true);
             this.updatePlocha(this.riadky, this.stlpce);
         } 
-    }  
+    }
+    
+    public void zdvihniVlajku(int x, int y){
+        this.zoznamPolicok[x-1][y-1].setMaVlajku(false);
+        this.updatePlocha(this.riadky, this.stlpce);
+    }
 }

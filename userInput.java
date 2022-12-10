@@ -61,8 +61,11 @@ public class userInput {
                     this.plocha.polozVlajku(suradnicaY, suradnicaX);
                     break;
                 case 3:
-                    System.out.println("Toto este dorobim, skus vyberat este raz a teraz lepsie");
-                    this.makeGuesses();
+                    System.out.println("Zadaj X: ");
+                    suradnicaX = scanner.nextInt();
+                    System.out.println("Zadaj Y: ");
+                    suradnicaY = scanner.nextInt(); 
+                    this.plocha.zdvihniVlajku(suradnicaX, suradnicaY);
                     break;
                 default:
                     System.out.println("Chybný input, skús ešte raz");
