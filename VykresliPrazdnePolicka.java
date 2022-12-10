@@ -39,30 +39,8 @@ public class VykresliPrazdnePolicka {
         }
     }
 
-
     public Policko[][] getZoznamPraznychPoli() {
         return this.zoznamPolicok;
-    }
-
-    public int zistiPocetMinOkolo(int x, int y) {
-        int pocetMinOkolo = 0;
-        for (int riadok = 0; riadok < 3; riadok++) {
-            for (int policko = 0; policko < 3; policko++) {
-                int index1 = (x - 2) + riadok;
-                int index2 = (y - 2) + policko;
-                if ((index1 == -1 || index2 == -1) || (index1 == this.zoznamPolicok[x - 1].length || index2 == this.zoznamPolicok.length)) {
-                    continue;
-                } else {
-                    if (this.zoznamPolicok[index1][index2].getJeBomba()) {
-                        pocetMinOkolo++;
-                    } else {
-                        //this.setBombsInArea(x, y, pocetMinOkolo);
-                        break;
-                    }
-                }
-            }
-        }
-        return pocetMinOkolo;
     }
 
     public void vypisHodnot() {
