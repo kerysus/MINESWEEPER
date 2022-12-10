@@ -48,8 +48,8 @@ public class Plocha {
         this.stlpce = stlpce;
         for (int i = 0; i < riadky; i++){
             for (int j = 0; j < riadky; j++){
-                zoznamPolicok[i][j] = new Policko(i, j);
-                zoznamPolicok[i][j].vykresli();
+                this.zoznamPolicok[i][j] = new Policko(i, j);
+                this.zoznamPolicok[i][j].vykresli();
             }
             System.out.println("");
         }
@@ -126,8 +126,22 @@ public class Plocha {
             
             if (this.zoznamPolicok[x-1][y-1].getBombsInArea()==0){
                 this.vykresliPrazdnePolicka = new VykresliPrazdnePolicka(this.zoznamPolicok, x, y);
+                this.vykresliPrazdnePolicka.algoritmus();
+                this.zoznamPolicok = this.vykresliPrazdnePolicka.getZoznamPraznychPoli();
+                this.vykresliPrazdnePolia();
             }
         }
+    }
+    
+    public void vykresliPrazdnePolia(){
+        for (int riadok = 0; riadok < this.zoznamPolicok.length; riadok++){
+            for (int prvok = 0; prvok < this.zoznamPolicok[riadok].length; prvok++){
+                if (this.zoznamPolicok[riadok][prvok].getKontrola()){
+                    this.zoznamPolicok[riadok][prvok].setJeOdhalena(true);
+                }
+            }
+        }
+        this.updatePlocha(this.riadky, this.stlpce);
     }
     
     //metoda na zistenie kolko je min v okoli daneho policka
@@ -155,8 +169,12 @@ public class Plocha {
     
     public void zistiPocetMinOkoloVsetkychPolicok(){
         for (int riadok = 0; riadok < this.zoznamPolicok.length; riadok++){
-            for (int prvok = 0; prvok < this.zoznamPolicok[riadok].length; prvok++){   
-                this.zoznamPolicok[riadok][prvok].setBombsInArea(this.zistiPocetMinOkolo(riadok+1, prvok+1));
+            for (int prvok = 0; prvok < this.zoznamPolicok[riadok].length; prvok++){
+                int pocetMinOkolo = this.zistiPocetMinOkolo(riadok+1, prvok+1);
+                if (pocetMinOkolo == 0){
+                    this.zoznamPolicok[riadok][prvok].setJeObsadene(true);
+                }
+                this.zoznamPolicok[riadok][prvok].setBombsInArea(pocetMinOkolo);
             }
         }
     }
