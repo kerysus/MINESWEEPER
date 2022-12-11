@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class userInput {
+public class userInputOldVersion {
     private Plocha plocha;
     private Scanner scanner;
     
-    public userInput() {
+    public userInputOldVersion() {
         this.scanner = new Scanner(System.in);
         this.vytvorPlochu();
         this.vytvorPoleMin();
