@@ -11,7 +11,7 @@ public class UserInput {
     }
 
     public void vytvorHru() {
-        System.out.println("Zadaj obťiažnosť hry: 1)ľahká  2)pokročilá 3) ťažká");
+        System.out.println("Zadaj obtiažnosť hry: 1)ľahká  2)pokročilá 3) ťažká");
         int obtiaznost = this.scanner.nextInt();
         switch (obtiaznost) {
             case 1:
