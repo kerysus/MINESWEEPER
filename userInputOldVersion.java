@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Táto trieda nie je aktuálna a je nahradená novou triedou UserInput(). 
+ */
 public class userInputOldVersion {
     private Plocha plocha;
     private Scanner scanner;
