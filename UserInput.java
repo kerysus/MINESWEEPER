@@ -1,16 +1,25 @@
 import java.util.Scanner;
 
+/**
+ * Táto trieda berie vstupy od uživatela do hry.
+ */
 public class UserInput {
     private Plocha plocha;
     private Napoveda napoveda;
     private Scanner scanner;
-
+    
+    /**
+     * Táto metóda tvorí konštruktor triedy.
+     */
     public UserInput() {
         this.scanner = new Scanner(System.in);
         this.vytvorHru();
         this.makeGuesses();
     }
-
+    
+    /**
+     * Táto metóda pýta od uživateľa stupeň obtiažnosti hry.
+     */
     public void vytvorHru() {
         System.out.println("Zadaj obtiažnosť hry: 1)ľahká  2)pokročilá 3) ťažká");
         int obtiaznost = this.scanner.nextInt();
@@ -32,15 +41,24 @@ public class UserInput {
                 this.vytvorHru();
         }
     }
-
+    
+    /**
+     * Táto metóda vytvorí nový objekt triedy Plocha.
+     */
     public void vytvorPlochu(int riadky) {
         this.plocha = new Plocha(riadky, riadky);
     }
 
+    /**
+     * Táto metóda volá metódu vytvorPoleBomb z triedy Plocha a vytvorí daný počet mín v hre.
+     */
     public void vytvorPoleMin(int pocetMin) {
         this.plocha.vytvorPoleBomb(pocetMin);
     }
 
+    /**
+     * Táto metóda pýta od uživatela či chce spraviť ohad na odkrytie políčka, položiť vlajku na políčko, zdvihnuť vlajku alebo zobraziť nápovedu.
+     */
     public void makeGuesses() {
         if (!this.plocha.getVyhra() && !this.plocha.getPrehra()) {
             System.out.println("Vyber: odhad(1), polož vlajku(2), zdvihni vlajku(3), daj nápovedu(4): ");
