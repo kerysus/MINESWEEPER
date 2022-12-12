@@ -9,7 +9,6 @@ public class UserInput {
         this.scanner = new Scanner(System.in);
         this.vytvorHru();
         this.makeGuesses();
-        this.napoveda = new Napoveda();
     }
 
     public void vytvorHru() {
@@ -27,6 +26,9 @@ public class UserInput {
             case 3:
                 this.vytvorPlochu(10);
                 this.vytvorPoleMin(20);
+                break;
+            case 4:
+                this.napoveda = new Napoveda();
                 break;
             default:
                 System.out.println("Chybný input, skús ešte raz");
@@ -68,9 +70,6 @@ public class UserInput {
                     System.out.println("Zadaj Y: ");
                     suradnicaY = this.scanner.nextInt();
                     this.plocha.zdvihniVlajku(suradnicaX, suradnicaY);
-                    break;
-                case 4:
-                    this.napoveda.dajNapovedu();
                     break;
                 default:
                     System.out.println("Chybný input, skús ešte raz");
