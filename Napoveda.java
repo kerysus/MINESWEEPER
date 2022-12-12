@@ -1,8 +1,17 @@
+/**
+ * Táto trieda vypíše do konzole nápovedu ako sa hra má hrať a logo ZŤP.
+ */
 public class Napoveda {
-
+    /**
+     * Táto metóda tvorí konštruktor triedy, v ktorej volá len jednu metódu.
+     */
     public Napoveda() {
         this.dajNapovedu();
     }
+    
+    /**
+     * Táto metóda vypíše do konzole nápovedu ako sa hra má hrať a logo ZŤP.
+     */
     public void dajNapovedu(){
         System.out.println("                              \\\\   //");
         System.out.println("                               \\\\_//");
