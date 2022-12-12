@@ -8,6 +8,7 @@ public class UserInput {
     public UserInput() {
         this.scanner = new Scanner(System.in);
         this.vytvorHru();
+        this.makeGuesses();
     }
 
     public void vytvorHru() {
