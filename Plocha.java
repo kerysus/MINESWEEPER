@@ -1,5 +1,8 @@
 import java.util.Random;
 
+/**
+ * Táto trieda vypíše vytvorí a vykreslí plochu do terminálu.
+ */
 public class Plocha {
     private int riadky;
     private int stlpce;
@@ -10,7 +13,10 @@ public class Plocha {
     private Random random;
     private VykresliPrazdnePolicka vykresliPrazdnePolicka;
     private Policko[][] zoznamPolicok;
-
+    
+    /**
+     * Táto metóda tvorí konštruktor triedy.
+     */
     public Plocha(int riadky, int stlpce) {
         this.zoznamPolicok = new Policko[riadky][stlpce];
         this.vytvorPlochu(riadky, stlpce);
@@ -19,29 +25,45 @@ public class Plocha {
         this.random = new Random();
         this.zneskodneneBomby = 0;
     }
-
+    
+    /**
+     * Táto metóda tvorí getter na atribút vyhra.
+     */
     public boolean getVyhra() {
         return this.vyhra;
     }
-
+    
+    /**
+     * Táto metóda tvorí getter na atribút prehra.
+     */
     public boolean getPrehra() {
         return this.prehra;
     }
 
-    //nastavi atribut "jeBomba" daneho policka (miny) na false 
+    /**
+     * Táto metóda nastaví atribút jeBomba daného políčka na false.
+     */
     public void setJeBomba(int x, int y, boolean hodnota) {
         this.zoznamPolicok[x - 1][y - 1].setJeBomba(hodnota);
     }
-
+    
+    /**
+     * Táto metóda volá metódu setBombsInArea triedy Policko.
+     */
     public void setBombsInArea(int x, int y, int pocet) {
         this.zoznamPolicok[x - 1][y - 1].setBombsInArea(pocet);
     }
-
+    
+    /**
+     * Táto metóda volá metódu setJeOdhalena triedy Policko.
+     */
     public void setJeOdhalena(int x, int y, boolean hodnota) {
         this.zoznamPolicok[x - 1][y - 1].setJeOdhalena(hodnota);
     }
 
-    //vytvori novy objekt typu Plocha()
+    /**
+     * Táto metóda vytvorí a vykreslí hraciu plochu na terminál.
+     */
     public void vytvorPlochu(int riadky, int stlpce) {
         this.riadky = riadky;
         this.stlpce = stlpce;
@@ -54,7 +76,9 @@ public class Plocha {
         }
     }
 
-    //vykresli hracu plochu hry
+    /**
+     * Táto metóda aktualizuje plochu a vypíše ju s hodnotami každého políčka.
+     */
     public void updatePlocha(int riadky, int stlpce) {
         System.out.print("   ");
         for (int x = 1; x <= stlpce; x++) {
@@ -91,12 +115,16 @@ public class Plocha {
         System.out.println("");
     }
 
-    //vytvori minu na danej suradnici
+    /**
+     * Táto metóda vytvorí mínu na danej súradnici.
+     */
     public void vytvorBombu(int x, int y) {
         this.zoznamPolicok[x - 1][y - 1].vytvorBombu();
     }
 
-    //vytvori dany pocet min na ploche
+    /**
+     * Táto metóda vytvorí daný počet mín na ploche.
+     */
     public void vytvorPoleBomb(int pocetBomb) {
         this.pocetBomb = pocetBomb;
         for (int i = 0; i < pocetBomb; i++) {
@@ -108,7 +136,9 @@ public class Plocha {
         this.updatePlocha(this.riadky, this.stlpce);
     }
 
-    //metoda na vytvorenie odhadu kde by sa mina mohla nachadzat
+    /**
+     * Táto metóda slúži na kontrolu či sme trafili alebo netrafili mínu.
+     */
     public void makeGuess(int x, int y) {
         //skontroluje ci sme trafili minu
         if (this.zoznamPolicok[x - 1][y - 1].getJeBomba()) {
@@ -127,7 +157,10 @@ public class Plocha {
             }
         }
     }
-
+    
+    /**
+     * Táto metóda vykreslí polia ktoré sú prázdne.
+     */
     public void vykresliPrazdnePolia() {
         for (int riadok = 0; riadok < this.zoznamPolicok.length; riadok++) {
             for (int prvok = 0; prvok < this.zoznamPolicok[riadok].length; prvok++) {
@@ -139,7 +172,9 @@ public class Plocha {
         this.updatePlocha(this.riadky, this.stlpce);
     }
 
-    //metoda na zistenie kolko je min v okoli daneho policka
+    /**
+     * Táto metóda zistí počet mín akolo daného políčka.
+     */
     public int zistiPocetMinOkolo(int x, int y) {
         int pocetMinOkolo = 0;
         for (int riadok = 0; riadok < 3; riadok++) {
@@ -159,7 +194,10 @@ public class Plocha {
         }
         return pocetMinOkolo;
     }
-
+    
+    /**
+     * Táto metóda zistí počet mín okolo všetkých políčok.
+     */
     public void zistiPocetMinOkoloVsetkychPolicok() {
         for (int riadok = 0; riadok < this.zoznamPolicok.length; riadok++) {
             for (int prvok = 0; prvok < this.zoznamPolicok[riadok].length; prvok++) {
@@ -171,8 +209,10 @@ public class Plocha {
             }
         }
     }
-
-    //skontroluje ci sme polozili vlajku na minu, ak ano pripocitaju sa nam vitazne body
+    
+    /**
+     * Táto metóda skontroluje či sme položili vlajku na mínu, ak áno, pripočítajú sa víťazné body.
+     */
     public void polozVlajku(int x, int y) {
         if (this.zoznamPolicok[x - 1][y - 1].getJeBomba()) {
             this.zneskodneneBomby++;
@@ -188,7 +228,10 @@ public class Plocha {
             this.updatePlocha(this.riadky, this.stlpce);
         }
     }
-
+    
+    /**
+     * Táto metóda zdvihne vlajku z daného políčka.
+     */
     public void zdvihniVlajku(int x, int y) {
         this.zoznamPolicok[x - 1][y - 1].setMaVlajku(false);
         this.updatePlocha(this.riadky, this.stlpce);
