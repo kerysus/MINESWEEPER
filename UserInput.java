@@ -2,12 +2,14 @@ import java.util.Scanner;
 
 public class UserInput {
     private Plocha plocha;
+    private Napoveda napoveda;
     private Scanner scanner;
 
     public UserInput() {
         this.scanner = new Scanner(System.in);
         this.vytvorHru();
         this.makeGuesses();
+        this.napoveda = new Napoveda();
     }
 
     public void vytvorHru() {
@@ -42,7 +44,7 @@ public class UserInput {
 
     public void makeGuesses() {
         if (!this.plocha.getVyhra() && !this.plocha.getPrehra()) {
-            System.out.println("Vyber: odhad(1), polož vlajku(2), zdvihni vlajku(3): ");
+            System.out.println("Vyber: odhad(1), polož vlajku(2), zdvihni vlajku(3), zobraz nápovedu(4): ");
             int vyber = this.scanner.nextInt();
 
             switch (vyber) {
@@ -66,6 +68,9 @@ public class UserInput {
                     System.out.println("Zadaj Y: ");
                     suradnicaY = this.scanner.nextInt();
                     this.plocha.zdvihniVlajku(suradnicaX, suradnicaY);
+                    break;
+                case 4:
+                    this.napoveda.dajNapovedu();
                     break;
                 default:
                     System.out.println("Chybný input, skús ešte raz");
