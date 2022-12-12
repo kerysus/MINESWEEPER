@@ -1,8 +1,5 @@
 /**
- * Write a description of class mina here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Táto trieda nastaví počiatočné parametre políčku v hre. 
  */
 public class Policko {
     private int x;
@@ -14,7 +11,10 @@ public class Policko {
     private boolean maVlajku;
     private boolean obsadene;
     private boolean kontrola;
-
+    
+    /**
+     * Táto metóda tvorí konštruktor triedy.
+     */
     public Policko(int y, int x) {
         this.x = x;
         this.y = y;
@@ -25,68 +25,108 @@ public class Policko {
         this.obsadene = false;
         this.kontrola = false;
     }
-
+    
+    /**
+     * Táto metóda tvorí getter pre atribút x.
+     */
     public int getX() {
         return this.x;
     }
-
+    
+    /**
+     * Táto metóda tvorí getter pre atribút y.
+     */
     public int getY() {
         return this.y;
     }
 
+    /**
+     * Táto metóda tvorí getter pre atribút bombsInArea.
+     */
     public int getBombsInArea() {
         return this.bombsInArea;
     }
-
+    
+    /**
+     * Táto metóda tvorí getter pre atribút jeBomba.
+     */
     public boolean getJeBomba() {
         return this.jeBomba;
     }
 
+    /**
+     * Táto metóda tvorí getter pre atribút obsadene.
+     */
     public boolean getJeObsadene() {
         return this.obsadene;
     }
-
+    
+    /**
+     * Táto metóda tvorí getter pre atribút maVlajku.
+     */
     public boolean getMaVlajku() {
         return this.maVlajku;
     }
-
+    
+    /**
+     * Táto metóda tvorí getter pre atribút kontrola.
+     */
     public boolean getKontrola() {
         return this.kontrola;
     }
 
+    /**
+     * Táto metóda tvorí setter pre atribút obsadene.
+     */
     public void setJeObsadene(boolean hodnota) {
         this.obsadene = hodnota;
     }
-
+    
+    /**
+     * Táto metóda tvorí setter pre atribút maVlajku.
+     */
     public void setMaVlajku(boolean hodnota) {
         this.maVlajku = hodnota;
     }
-
+    
+    /**
+     * Táto metóda tvorí setter pre atribút jeBomba.
+     */
     public void setJeBomba(boolean hodnota) {
         this.jeBomba = hodnota;
     }
-
+    
+    /**
+     * Táto metóda tvorí setter pre atribút jeOdhalena.
+     */
     public void setJeOdhalena(boolean hodnota) {
         this.jeOdhalena = hodnota;
     }
-
+    
+    /**
+     * Táto metóda tvorí setter pre atribút bombsInArea.
+     */
     public void setBombsInArea(int pocet) {
         this.bombsInArea = pocet;
     }
 
+    /**
+     * Táto metóda tvorí setter pre atribút kontrola.
+     */
     public void setKontrola(boolean hodnota) {
         this.kontrola = hodnota;
     }
-
-    public boolean makeGuess(int x, int y) {
-        return false;
-    }
-
+    
+    /**
+     * Táto metóda nastaví atribút jeBomba typu boolean na true.
+     */
     public void vytvorBombu() {
         this.jeBomba = true;
     }
 
-    //vykresli dane policko podla toho aky ma stav
+    /**
+     * Táto metóda vykreslí stav políčka na plochu.
+     */
     public void vykresli() {
         if (this.jeOdhalena) {
             if (this.bombsInArea == 0) {
