@@ -43,7 +43,7 @@ public class UserInput {
 
     public void makeGuesses() {
         if (!this.plocha.getVyhra() && !this.plocha.getPrehra()) {
-            System.out.println("Vyber: odhad(1), polož vlajku(2), zdvihni vlajku(3), zobraz nápovedu(4): ");
+            System.out.println("Vyber: odhad(1), polož vlajku(2), zdvihni vlajku(3), daj nápovedu(4): ");
             int vyber = this.scanner.nextInt();
 
             switch (vyber) {
