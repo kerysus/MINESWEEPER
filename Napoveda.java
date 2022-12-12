@@ -1,7 +1,7 @@
 public class Napoveda {
 
     public Napoveda() {
-
+        this.dajNapovedu();
     }
     public void dajNapovedu(){
         System.out.println("                              \\\\   //");
